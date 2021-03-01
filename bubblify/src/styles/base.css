@@ -20,3 +20,11 @@
     justify-content: space-around;
     background-color: red;
 }
+
+#easter-egg {
+    font-size: 2px;
+}
+
+#easter-egg:hover {
+font-size: 72px;
+}

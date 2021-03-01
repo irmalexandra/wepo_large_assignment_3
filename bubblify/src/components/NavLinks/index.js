@@ -12,7 +12,7 @@ const NavLinks = () => (
                     <NavLink exact to="/bundles" className="nav-link">Bundles</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink exact to="/aboutus" className="nav-link">About Us</NavLink>
+                    <NavLink exact to="/about" className="nav-link">About Us</NavLink>
                 </li>
                 <li className="nav-item">
                     <NavLink exact to="/cart" className="nav-link">Cart</NavLink>
