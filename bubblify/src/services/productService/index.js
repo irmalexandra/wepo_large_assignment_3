@@ -29,8 +29,20 @@ const getProductById = async id => {
     return product;
 }
 
+const addToCart = id => {
+    let cart = [];
+    if((localStorage.getItem("cart"))){
+        cart = JSON.parse(localStorage.getItem("cart"))
+    }
+    cart.push(id)
+    localStorage.setItem("cart", JSON.stringify(cart))
+    console.log("what")
+    console.log(localStorage.getItem("cart"))
+}
+
 export {
     getProducts,
     getProductById,
-    getBundles
+    getBundles,
+    addToCart
 };
