@@ -10,17 +10,24 @@ const getBundles = async () =>{
     for (const index in allBundles){
          allBundles[index].items = await getBundleItems(allBundles[index].items)
     }
+    console.log("all bundles ----------> ", allBundles)
     return allBundles;
 }
 
 const getBundleItems = async (itemsList) =>{
     let products = await getProducts()
+    let bundle = {
+        products: [],
+        totalPrice: 0
+    }
     let filteredList = []
 
     for(const index in itemsList){
-        filteredList.push(products.find(p => p.id == itemsList[index]));
+        let product = products.find(p => p.id == itemsList[index])
+        bundle.products.push(product);
+        bundle.totalPrice += product.price;
     }
-    return filteredList;
+    return bundle;
 }
 
 const getProductById = async id => {
