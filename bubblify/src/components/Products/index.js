@@ -1,11 +1,29 @@
 import React from 'react'
-import NavLinks from "../NavLinks";
+import ProductList from "../ProductList";
+import {getProducts} from "../../services/productService"
 
-class News extends React.Component {
+class Products extends React.Component {
+
+
+
+    state = {
+        products: [],
+    };
+
+    async componentDidMount() {
+        this.setState({
+            products: await getProducts()
+        })
+    }
+
     render() {
-        return <div>News div</div>
+        return (<div>
+            <h1>Products</h1>
+
+            <ProductList products={ this.state.products} />
+        </div>);
     }
 }
 
 
-export default News;
+export default Products;

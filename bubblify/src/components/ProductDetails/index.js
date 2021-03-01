@@ -1,33 +1,40 @@
-import React from "react";
+import React from 'react';
+import { getProductById} from "../../services/productService"
+
+class ProductDetails extends React.Component {
+
+    state = {product: ''};
+
+    async componentDidMount() {
+
+        let product = await getProductById(this.props.match.params.productId);
+        console.log("this is product state ----------> ", product)
+        this.setState({product: product});
+
+    }
 
 
-const ProductDetails = ({product}) => (
-    <div>
-        <div className="container-fluid text-left product-container">
-            <div className="row padding justify-content-center">
-                <div className="container-fluid justify-content-center text-center">
-                    <h1>{product.name}</h1>
-                    <hr className="light"/>
+    render() {
+        return (
+            <div className="product-container">
+                <div className="image-container">
+                    <img src="" src={this.state.product.image} className="img-fluid"
+                         alt={"A picture of bubble product with id " + this.state.product.image}/>
                 </div>
-                <div className="col-md-6 col-xs-12 col-sm-12 text-center">
-                    <img src={product.image} className="img-fluid"
-                         alt={"A picture of bubble product with id" + product.image}/>
-                </div>
-                <div className="col-md-6 col-xs-12 col-sm-12">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <h2>Description</h2><p>{product.description}</p>
-                    <button class="btn btn-outline-secondary add_to_cart_button"
-                            id="{{ product.id }}">Add to Cart
-                    </button>
+                <div className="product-details">
+                    <h1>{this.state.product.name}</h1>
+                    <hr className="light" />
+                        <h2>Product Price</h2>
+                        <h2>Description</h2>
+                        <p>{this.state.product.description}</p>
+                        <button className="btn btn-outline-secondary add_to_cart_button"
+                                id={this.state.product.id}>Add to Cart
+                        </button>
                 </div>
             </div>
-        </div>
-    </div>
+        );
+    }
+}
 
-
-)
-
-export default ProductDetails
+export default ProductDetails;
 
