@@ -36,10 +36,13 @@ const addToCart = id => {
     let cart = [];
     if((localStorage.getItem("cart"))){
         cart = JSON.parse(localStorage.getItem("cart"))
+        if(cart.includes(id)){
+            console.log("found!")
+            return
+        }
     }
     cart.push(id)
     localStorage.setItem("cart", JSON.stringify(cart))
-    console.log("what")
     console.log(localStorage.getItem("cart"))
 }
 

@@ -14,7 +14,6 @@ class ProductDetails extends React.Component {
         let product = await getProductById(this.props.match.params.productId);
         console.log("this is product state ----------> ", product)
         this.setState({product: product});
-        console.log(document.getElementById('add_to_cart_button'))
     };
     render() {
         const { name, image, price, description, id } = this.state.product;
@@ -22,8 +21,8 @@ class ProductDetails extends React.Component {
         return (
             <div className="product-container">
                 <div className="image-container">
-                    <img src="" src={this.state.product.image} className="img-fluid"
-                         alt={"A picture of bubble product with id " + this.state.product.image}/>
+                    <img src={image} className="img-fluid"
+                         alt={"A picture of bubble product with id " + id}/>
                 </div>
                 <div className="product-details">
                     <h1>{name}</h1>

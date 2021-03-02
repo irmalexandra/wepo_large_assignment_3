@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import NavigationBar from "./components/NavigationBar";
 import Container from "./components/Container";
 import Products from "./components/Products";
@@ -8,6 +7,7 @@ import About from "./components/About"
 import Bundles from "./components/Bundles"
 import Cart from "./components/Cart"
 import ProductDetails from "./components/ProductDetails";
+import CustomerInfo from "./components/CartItems";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
                 <Route exact path="/about" component={ About } />
                 <Route exact path="/cart" component={ Cart } />
                 <Route exact path="/bubbles/:productId" component={ ProductDetails } />
+                <Route exact path="/cart/userInfo" component={ CustomerInfo } />
             </Switch>
         </Container>
     </div>
