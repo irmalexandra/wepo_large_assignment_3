@@ -1,14 +1,18 @@
-import axios from 'axios';
+
+const service = "http://localhost:3500/api"
 
 const getProducts = async () => {
-    let products = (await axios.get("http://localhost:3500/api/bubbles")).data;
-    return products
+
+    // let products = (await axios.get("http://localhost:3500/api/bubbles")).data;
+    return await (fetch(service+'/bubbles').then(res => res.json()).then(data =>{return data}));
 };
 
 const getBundles = async () =>{
-    let allBundles = (await axios.get("http://localhost:3500/api/bundles")).data;
+    // let allBundles = (await axios.get("http://localhost:3500/api/bundles")).data;
+    let allBundles = await(fetch(service+'/bundles').then(res => res.json()).then(data =>{return data}));
     for (const index in allBundles){
-         allBundles[index].items = await getBundleItems(allBundles[index].items)
+        console.log(allBundles[index])
+        allBundles[index].items = await getBundleItems(allBundles[index].items)
     }
     console.log("all bundles ----------> ", allBundles)
     return allBundles;
@@ -20,8 +24,6 @@ const getBundleItems = async (itemsList) =>{
         products: [],
         totalPrice: 0
     }
-    let filteredList = []
-
     for(const index in itemsList){
         let product = products.find(p => p.id == itemsList[index])
         bundle.products.push(product);
@@ -32,8 +34,7 @@ const getBundleItems = async (itemsList) =>{
 
 const getProductById = async id => {
     let productList = await getProducts();
-    let product = productList.find(p => p.id == id)
-    return product;
+    return productList.find(p => p.id == id);
 }
 
 const addToCart = id => {
