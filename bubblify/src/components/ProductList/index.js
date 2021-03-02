@@ -5,7 +5,6 @@ const ProductList= ({products}) =>(
     <div className="container-fluid padding">
         <div className="d-flex flex-row flex-wrap justify-content-center">
         {products.map(n =>
-
             <div
                 className="card col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 padding p-2 text-center justify-content-center dark">
                 <Link to={`/bubbles/${n.id}`} >

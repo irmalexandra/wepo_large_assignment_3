@@ -2,19 +2,15 @@
 const service = "http://localhost:3500/api"
 
 const getProducts = async () => {
-
-    // let products = (await axios.get("http://localhost:3500/api/bubbles")).data;
     return await (fetch(service+'/bubbles').then(res => res.json()).then(data =>{return data}));
 };
 
 const getBundles = async () =>{
-    // let allBundles = (await axios.get("http://localhost:3500/api/bundles")).data;
     let allBundles = await(fetch(service+'/bundles').then(res => res.json()).then(data =>{return data}));
     for (const index in allBundles){
         console.log(allBundles[index])
         allBundles[index].items = await getBundleItems(allBundles[index].items)
     }
-    console.log("all bundles ----------> ", allBundles)
     return allBundles;
 }
 
@@ -33,8 +29,7 @@ const getBundleItems = async (itemsList) =>{
 }
 
 const getProductById = async id => {
-    let productList = await getProducts();
-    return productList.find(p => p.id == id);
+    return await(fetch(service+'/bubbles/'+id).then(res => res.json()).then(data =>{return data}));
 }
 
 const addToCart = id => {
@@ -48,9 +43,33 @@ const addToCart = id => {
     console.log(localStorage.getItem("cart"))
 }
 
+const addBundleToCart = async bundleId => {
+    let bundleItemsIds = (await getBundleById(bundleId)).items
+    for (const index in bundleItemsIds){
+        addToCart(bundleItemsIds[index])
+    }
+}
+
+const getCartItems = async () => {
+    let return_list = []
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    for(const index in cart){
+        return_list.push(await getProductById(cart[index]))
+    }
+    console.log(cart)
+    return return_list
+}
+
+const clearCart = () =>
+    localStorage.setItem("cart", "");
+
+
 export {
     getProducts,
     getProductById,
     getBundles,
-    addToCart
+    addToCart,
+    addBundleToCart,
+    getCartItems,
+    clearCart,
 };

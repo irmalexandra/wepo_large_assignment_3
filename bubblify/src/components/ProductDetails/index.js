@@ -1,6 +1,7 @@
 import React from 'react';
+import { PropTypes } from 'prop-types'
 import { getProductById} from "../../services/productService"
-import {addToCart} from "../../services/productService";
+import { addToCart } from "../../services/productService";
 
 class ProductDetails extends React.Component {
 
@@ -15,9 +16,9 @@ class ProductDetails extends React.Component {
         this.setState({product: product});
         console.log(document.getElementById('add_to_cart_button'))
     };
-
-
     render() {
+        const { name, image, price, description, id } = this.state.product;
+
         return (
             <div className="product-container">
                 <div className="image-container">
@@ -25,19 +26,28 @@ class ProductDetails extends React.Component {
                          alt={"A picture of bubble product with id " + this.state.product.image}/>
                 </div>
                 <div className="product-details">
-                    <h1>{this.state.product.name}</h1>
+                    <h1>{name}</h1>
                     <hr className="light" />
                         <h2>Product Price</h2>
+                        <p>{price}</p>
                         <h2>Description</h2>
-                        <p>{this.state.product.description}</p>
-                        <button className="btn btn-outline-secondary add_to_cart_button" onClick={() => addToCart(this.state.product.id)}
-                                id={this.state.product.id}> Add to Cart
+                        <p>{description}</p>
+                        <button className="btn btn-outline-secondary add_to_cart_button" onClick={() => addToCart(id)}
+                                id={id}>Add to Cart
                         </button>
                 </div>
             </div>
         );
     }
 }
-
+ProductDetails.propTypes = {
+    product: PropTypes.shape({
+        name: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        description: PropTypes.string,
+        id: PropTypes.number.isRequired
+    }).isRequired
+}
 export default ProductDetails;
 

@@ -3,9 +3,6 @@ import ProductList from "../ProductList";
 import {getProducts} from "../../services/productService"
 
 class Products extends React.Component {
-
-
-
     state = {
         products: [],
     };
@@ -19,7 +16,6 @@ class Products extends React.Component {
     render() {
         return (<div>
             <h1>Products</h1>
-
             <ProductList products={ this.state.products} />
         </div>);
     }
