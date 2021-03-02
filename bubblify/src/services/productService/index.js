@@ -32,6 +32,14 @@ const getProductById = async id => {
     return await(fetch(service+'/bubbles/'+id).then(res => res.json()).then(data =>{return data}));
 }
 
+const getBundleById = async id => {
+    let bundle;
+    bundle = await (fetch(service + '/bundles/' + id).then(res => res.json()).then(data => {
+        return data
+    }));
+    return bundle
+}
+
 const addToCart = id => {
     let cart = [];
     if((localStorage.getItem("cart"))){
