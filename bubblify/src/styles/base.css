@@ -47,3 +47,17 @@
 .card-body .card {
     align-items: center;
 }
+
+#order-review{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+
+#products {
+    width: 100%
+}
+
+#info {
+    width: 100%;
+}

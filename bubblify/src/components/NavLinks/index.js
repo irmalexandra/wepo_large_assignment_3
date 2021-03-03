@@ -17,6 +17,9 @@ const NavLinks = () => (
                 <li className="nav-item">
                     <NavLink exact to="/cart" className="nav-link">Cart</NavLink>
                 </li>
+                <li className="nav-item">
+                    <NavLink exact to="/previousorder" className="nav-link">Previous Orders</NavLink>
+                </li>
             </ul>
         </div>
     </div>
