@@ -20,8 +20,11 @@ const Bundle = ({id, name, items}) => (
 );
 
 Bundle.propTypes = {
+    // The ID of the bundle
     id: PropTypes.number.isRequired,
+    // The name of the bundle
     name: PropTypes.string.isRequired,
+    // A list of product ids
     items: PropTypes.object.isRequired
 };
 

@@ -15,8 +15,11 @@ ProductList.propTypes = {
     products: PropTypes.arrayOf(PropTypes.shape({
         // The name of the product
         name: PropTypes.string.isRequired,
+        // An image of the product
         image: PropTypes.string.isRequired,
+        // The price of the product
         price: PropTypes.number.isRequired,
+        // The description of the product
         description: PropTypes.string,
         // The unique id of the product
         id: PropTypes.number.isRequired

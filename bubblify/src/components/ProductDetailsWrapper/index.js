@@ -20,8 +20,6 @@ class ProductDetailsWrapper extends React.Component {
         return (
             <ProductDetails product={this.state.product}/>
         );
-
-
     }
 }
 

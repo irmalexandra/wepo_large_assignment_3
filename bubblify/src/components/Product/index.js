@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 
-const Product = ({ id, name, image, price, description}) => (
+const Product = ({ id, name, image, price}) => (
     <div
         className="card col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 padding p-2 text-center justify-content-center dark">
         <Link to={`/bubbles/${id}`}>
@@ -17,11 +17,14 @@ const Product = ({ id, name, image, price, description}) => (
 );
 
 Product.propTypes = {
+    // The unique id of the product
     id: PropTypes.number.isRequired,
+    // The name of the product
     name: PropTypes.string.isRequired,
+    // An image of the product
     image: PropTypes.string.isRequired,
+    // The price of the product
     price: PropTypes.number.isRequired,
-    description: PropTypes.string,
 };
 
 export default Product;
