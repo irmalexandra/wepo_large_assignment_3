@@ -17,14 +17,6 @@ class ProductDetailsWrapper extends React.Component {
         }
     };
     render() {
-        const {name, image, price, id, description} = this.state.product
-        const product = {
-            name: name,
-            image: image,
-            price: price,
-            id: id,
-            description: description
-        }
         return (
             <ProductDetails product={this.state.product}/>
         );

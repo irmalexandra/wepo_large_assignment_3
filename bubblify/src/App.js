@@ -6,9 +6,11 @@ import Products from "./components/Products";
 import About from "./components/About"
 import Bundles from "./components/Bundles"
 import Cart from "./components/Cart"
-import ShippingInfo from "./components/ShippingInfo";
+import DeliveryInfo from "./components/DeliveryInfo";
 import ProductDetailsWrapper from "./components/ProductDetailsWrapper/"
-
+import PickupInfo from "./components/PickupInfo";
+import OrderReview from "./components/OrderReview";
+import PreviousOrders from "./PreviousOrder";
 
 function App() {
   return (
@@ -21,7 +23,11 @@ function App() {
                 <Route exact path="/about" component={ About } />
                 <Route exact path="/cart" component={ Cart } />
                 <Route exact path="/bubbles/:productId" component={ ProductDetailsWrapper }/>
-                <Route exact path="/cart/userInfo" component={ ShippingInfo } />
+                <Route exact path="/cart/pickup" component={ PickupInfo } />
+                <Route exact path="/cart/delivery" component={ DeliveryInfo } />
+                <Route exact path="/cart/review" component={ OrderReview } />
+                <Route exact path="/previousorder" component={ PreviousOrders } />
+
             </Switch>
         </Container>
     </div>

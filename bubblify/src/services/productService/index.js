@@ -2,7 +2,8 @@
 const service = "http://localhost:3500/api"
 
 const getProducts = async () => {
-    return await (fetch(service+'/bubbles').then(res => res.json()).then(data =>{return data}));
+    let products = await (fetch(service+'/bubbles').then(res => res.json()).then(data =>{return data}));
+    return products ? products : [];
 };
 
 const getBundles = async () =>{
@@ -11,6 +12,20 @@ const getBundles = async () =>{
         allBundles[index].items = await getBundleItems(allBundles[index].items)
     }
     return allBundles;
+}
+
+const getProductsByNumber = async (telephone) => {
+    let products = await (fetch(service+'/orders/'+telephone).then(res => res.json()).then(data =>{return data}));
+    return products
+}
+
+const postOrder = async ({cart, info}) =>{
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({order: {cart:cart, info:info}})
+    }
+    await (fetch(service+'/orders/'+info.telephone, requestOptions));
 }
 
 const getBundleItems = async (itemsList) =>{
@@ -85,4 +100,6 @@ export {
     addBundleToCart,
     getCartItems,
     clearCart,
+    postOrder,
+    getProductsByNumber
 };

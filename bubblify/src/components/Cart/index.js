@@ -1,34 +1,71 @@
 import React from 'react'
 import ProductList from "../ProductList";
 import {getCartItems, clearCart} from "../../services/productService";
-
+import {NavLink} from "react-router-dom";
 
 
 class Cart extends React.Component {
 
     state = {
         products: [],
+        delivery: true
     };
 
     async componentDidMount() {
         this.setState({
             products: await getCartItems()
         })
+
     }
-    handleClick = () => {
+
+    clearButtonHandler = () => {
         clearCart()
         this.setState({products: []});
     }
 
+    checkoutHandler = () => {
+        this.setState({delivery: document.getElementById("delivery").checked})
+    }
+
+
     render() {
-        return (<div>
+        return (<div id="cartBody">
             <h1>Cart</h1>
-            <ProductList products={this.state.products} />
-            <button type="submit" className="btn btn-outline-secondary" onClick={() => this.handleClick()}
+            <ProductList products={this.state.products}/>
+
+            {this.state.products.length > 1 ?
+                <div>
+                    <button type="submit" className="btn btn-outline-secondary"
+                            onClick={() => this.clearButtonHandler()}
                     >Clear cart
-            </button>
+                    </button>
+                    <br/>
+                    <input type="radio" className="form-check-input" name="delivery-method" id="delivery"
+                           defaultChecked={true} onChange={() => this.checkoutHandler()}/>
+                    <label className="form-check-label">Delivery</label>
+                    <br/>
+                    <input type="radio" className="form-check-input" name="delivery-method" id="pick-up"
+                           onChange={() => this.checkoutHandler()}/>
+                    <label className="form-check-label">Pick up</label>
+                    <br/>
+                    {this.state.delivery === true ?
+                        <NavLink to={{
+                            pathname: "cart/delivery",
+                            cart: this.state.products}}
+                        >Proceed to checkout</NavLink> :
+                        <NavLink to={{
+                            pathname: "cart/pickup",
+                            cart: this.state.products
+                        }}>Proceed to
+                            checkout</NavLink>}
+                </div>
+
+                : <h3>The cart is empty.</h3>
+            }
+
         </div>);
     }
+
 }
 
 export default Cart;
