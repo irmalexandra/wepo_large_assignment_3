@@ -3,21 +3,9 @@ import { PropTypes } from 'prop-types'
 import { getProductById} from "../../services/productService"
 import { addToCart } from "../../services/productService";
 
-class ProductDetails extends React.Component {
-
-    state = {
-        product: ''
-    };
-
-    async componentDidMount() {
-
-        let product = await getProductById(this.props.match.params.productId);
-        console.log("this is product state ----------> ", product)
-        this.setState({product: product});
-    };
+class ProductDetails extends React.Component{
     render() {
-        const { name, image, price, description, id } = this.state.product;
-
+        const {name, image, price, description, id} = this.props.product
         return (
             <div className="product-container">
                 <div className="image-container">
@@ -39,11 +27,12 @@ class ProductDetails extends React.Component {
         );
     }
 }
+
 ProductDetails.propTypes = {
     product: PropTypes.shape({
-        name: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
         description: PropTypes.string,
         id: PropTypes.number.isRequired
     }).isRequired

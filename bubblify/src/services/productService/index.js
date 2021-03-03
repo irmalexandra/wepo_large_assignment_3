@@ -8,7 +8,6 @@ const getProducts = async () => {
 const getBundles = async () =>{
     let allBundles = await(fetch(service+'/bundles').then(res => res.json()).then(data =>{return data}));
     for (const index in allBundles){
-        console.log(allBundles[index])
         allBundles[index].items = await getBundleItems(allBundles[index].items)
     }
     return allBundles;
@@ -45,13 +44,11 @@ const addToCart = id => {
     if((localStorage.getItem("cart"))){
         cart = JSON.parse(localStorage.getItem("cart"))
         if(cart.includes(id)){
-            console.log("found!")
             return
         }
     }
     cart.push(id)
     localStorage.setItem("cart", JSON.stringify(cart))
-    console.log(localStorage.getItem("cart"))
 }
 
 const addBundleToCart = async bundleId => {
@@ -63,11 +60,16 @@ const addBundleToCart = async bundleId => {
 
 const getCartItems = async () => {
     let return_list = []
-    let cart = JSON.parse(localStorage.getItem("cart"))
+    let cart = localStorage.getItem("cart")
+    if(cart){
+        cart = JSON.parse(cart)
+    }
+    else{
+        return return_list
+    }
     for(const index in cart){
         return_list.push(await getProductById(cart[index]))
     }
-    console.log(cart)
     return return_list
 }
 

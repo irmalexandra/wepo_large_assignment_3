@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductList from "../ProductList";
-import { getCartItems } from "../../services/productService";
+import {getCartItems, clearCart} from "../../services/productService";
+
 
 
 class Cart extends React.Component {
@@ -13,6 +14,10 @@ class Cart extends React.Component {
         this.setState({
             products: await getCartItems()
         })
+    }
+    handleClick = () => {
+        clearCart()
+        this.setState({products: []});
     }
 
     render() {
