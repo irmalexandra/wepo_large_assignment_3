@@ -24,6 +24,9 @@ class Cart extends React.Component {
         return (<div>
             <h1>Cart</h1>
             <ProductList products={this.state.products} />
+            <button type="submit" className="btn btn-outline-secondary" onClick={() => this.handleClick()}
+                    >Clear cart
+            </button>
         </div>);
     }
 }

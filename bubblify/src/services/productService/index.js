@@ -28,7 +28,7 @@ const getBundleItems = async (itemsList) =>{
 }
 
 const getProductById = async id => {
-    return await(fetch(service+'/bubbles/'+id).then(res => res.json()).then(data =>{return data}));
+    return await(fetch(service+'/bubbles/' + id).then(res => res.json()).then(data =>{return data}));
 }
 
 const getBundleById = async id => {

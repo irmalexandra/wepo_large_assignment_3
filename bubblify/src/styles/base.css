@@ -17,14 +17,33 @@
 }
 
 .bundle-container {
-    justify-content: space-around;
-    background-color: red;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
 }
 
 #easter-egg {
-    font-size: 2px;
+    font-size: 5px;
 }
 
 #easter-egg:hover {
-font-size: 72px;
+    font-size: 72px;
+}
+
+#root {
+    justify-content: center;
+}
+
+#app {
+    justify-content: center;
+}
+
+.inputFormContainer {
+    width: 30%;
+    margin: auto;
+    text-align: left;
+}
+
+.card-body .card {
+    align-items: center;
 }

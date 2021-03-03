@@ -13,6 +13,16 @@ const ProductList = ({products}) => (
         </div>
 )
 
+ProductList.propTypes = {
+    product: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        description: PropTypes.string,
+        id: PropTypes.number.isRequired
+    }).isRequired
+}
+
 export default ProductList
 
 

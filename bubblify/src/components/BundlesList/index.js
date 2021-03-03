@@ -1,6 +1,5 @@
 import React from "react";
-import {addBundleToCart} from "../../services/productService";
-import ProductList from "../ProductList";
+import Bundle from "../Bundle";
 
 const BundlesList = ({bundles}) => (
     <div className="container-fluid padding">
