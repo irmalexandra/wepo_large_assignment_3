@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import Product from "../Product";
+import {PropTypes} from "prop-types";
+import ProductDetails from "../ProductDetails";
 
 const ProductList = ({products}) => (
         <div className="container-fluid padding">

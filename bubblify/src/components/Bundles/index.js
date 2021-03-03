@@ -4,7 +4,7 @@ import BundlesList from "../BundlesList";
 
 class Bundles extends React.Component {
 
-    state = {bundles: []};
+    state = { bundles: [] };
 
     async componentDidMount(){
         this.setState({
@@ -15,7 +15,7 @@ class Bundles extends React.Component {
     render() {
         return (<div>
             <h1>Bundles</h1>
-            <BundlesList bundles={ this.state.bundles} />
+            <BundlesList bundles={ this.state.bundles } />
         </div>);
     }
 }

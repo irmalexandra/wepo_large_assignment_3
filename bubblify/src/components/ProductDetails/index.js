@@ -1,6 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types'
-import { getProductById} from "../../services/productService"
 import { addToCart } from "../../services/productService";
 
 class ProductDetails extends React.Component{
@@ -36,6 +35,7 @@ ProductDetails.propTypes = {
         description: PropTypes.string,
         id: PropTypes.number.isRequired
     }).isRequired
+
 }
 export default ProductDetails;
 
