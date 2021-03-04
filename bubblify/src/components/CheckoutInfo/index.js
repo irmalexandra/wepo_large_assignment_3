@@ -1,6 +1,5 @@
 import React from 'react';
 import OrderReview from "../OrderReview";
-import {Redirect} from 'react-router-dom';
 
 class CheckoutInfo extends React.Component {
     constructor(props) {
@@ -44,22 +43,24 @@ class CheckoutInfo extends React.Component {
         e.preventDefault();
         const {fullName, telephone, address, city, postalCode} = this.state.fields;
         const errors = {};
-
         if (fullName === '') {
             errors.fullNameError = 'Full name is required.';
         }
         if (telephone === '') {
             errors.telephoneError = 'Telephone is required.';
         }
-        if (postalCode === '') {
-            errors.PostalCodeError = 'Postal code is required.';
+        if (this.state.isDelivery) {
+            if (postalCode === '') {
+                errors.PostalCodeError = 'Postal code is required.';
+            }
+            if (city === '') {
+                errors.cityError = 'City is required.';
+            }
+            if (address === '') {
+                errors.addressError = 'Address is required.';
+            }
         }
-        if (city === '') {
-            errors.cityError = 'City is required.';
-        }
-        if (address === '') {
-            errors.addressError = 'Address is required.';
-        }
+
 
         if (Object.keys(errors).length > 0) {
             this.setState({...this.state.errors, errors});
@@ -71,23 +72,28 @@ class CheckoutInfo extends React.Component {
 
     render() {
         return (
-
-
             <div className="inputFormContainer">
                 {this.state.isValid ?
-                    <OrderReview info={this.state.fields}/> :
-                <h3>Delivery Method</h3>
-                <input type="radio" className="form-check-input mb-4 mr-3" name="delivery-method" id="delivery"
-                       defaultChecked={true} onChange={() => this.checkoutHandler()}/>
-                <label className="form-check-label">Delivery</label>
-                <input type="radio" className="form-check-input mb-4" name="delivery-method" id="pick-up"
-                       onChange={() => this.checkoutHandler()}/>
-                <label className="form-check-label">Pick up</label>
-                <br/>
-                {this.state.isDelivery ?
+                    <OrderReview info={this.state.fields}/>
+                    :
                     <div>
-                        {this.state.isValid ?
-                            <Redirect to={{pathname: "checkout/review", state: {info: this.state.fields}}}/> :
+                        <h3>Delivery Method</h3>
+                        <div className="d-flex flex-row">
+                            <div className="m-2">
+                                <input type="radio" className="form-check-input " name="delivery-method" id="delivery"
+                                       defaultChecked={true} onChange={() => this.checkoutHandler()}/>
+                                <label className="form-check-label">Delivery</label>
+                            </div>
+
+                            <div className="m-2">
+                                <input type="radio" className="form-check-input" name="delivery-method" id="pick-up"
+                                       onChange={() => this.checkoutHandler()}/>
+                                <label className="form-check-label">Pick up</label>
+                            </div>
+                        </div>
+
+                        <br/>
+                        {this.state.isDelivery ?
                             <div>
                                 <h1>Delivery Info</h1>
                                 <form onSubmit={(e) => this.validateForm(e)}>
@@ -115,6 +121,8 @@ class CheckoutInfo extends React.Component {
                                             important so
                                             the bubbles find a new home</small>
                                     </div>
+
+
                                     <div className="form-group">
                                         <label htmlFor="inputCity">City</label>
                                         <input type="text" ref={input => this.userForm.city = input}
@@ -152,16 +160,10 @@ class CheckoutInfo extends React.Component {
                                             anything clever here...</small>
                                     </div>
 
-
                                     <button type="submit" className="btn btn-primary">Submit</button>
                                 </form>
                             </div>
-                        }
-                    </div>
-                    :
-                    <div>
-                        {this.state.isValid ?
-                            <OrderReview info={this.state.fields}/> :
+                            :
                             <div>
                                 <h1>Pickup Info</h1>
                                 <form onSubmit={(e) => this.validateForm(e)}>
@@ -195,11 +197,9 @@ class CheckoutInfo extends React.Component {
                         }
                     </div>
                 }
-                }
             </div>
         )
     }
 }
-
 
 export default CheckoutInfo

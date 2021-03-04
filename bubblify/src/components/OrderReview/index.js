@@ -23,12 +23,11 @@ const OrderReview = ({info}) => {
                 </thead>
                 <tbody>
                 {cart.map(item =>
-                    <tr>
+                    <tr key={item.id}>
                         <td>{item.name}</td>
                         <td>{item.price}</td>
                     </tr>
                     )}
-
                 </tbody>
             </table>
             <h2>Info</h2>
@@ -59,13 +58,11 @@ const OrderReview = ({info}) => {
                         <td>{info.telephone}</td>}
                         {info.postalCode &&
                         <td>{info.postalCode}</td>}
-
                     </tr>
                 </tbody>
             </table>
             <div id="confirmBody">
                 <NavLink to="/" className="btn btn-primary" onClick={() => postOrder({cart: cart, info: info})}>Confirm</NavLink>
-
             </div>
         </div>
     )

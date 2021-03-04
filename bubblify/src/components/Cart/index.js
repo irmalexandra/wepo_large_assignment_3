@@ -15,7 +15,6 @@ class Cart extends React.Component {
         this.setState({
             products: await getCartItems()
         })
-
     }
 
     clearButtonHandler = () => {
@@ -31,12 +30,10 @@ class Cart extends React.Component {
 
             {this.state.products.length > 0 ?
                 <div>
-                    <button type="submit" className="btn btn-outline-secondary"
-                            onClick={() => this.clearButtonHandler()}
-                    >Clear cart
-                    </button>
+                    <button type="submit" className="btn btn-outline-secondary m-1"
+                            onClick={() => this.clearButtonHandler()}>Clear cart</button>
                     <br/>
-                    <NavLink className="btn btn-secondary" to="/checkout">Proceed to checkout</NavLink> :
+                    <NavLink className="btn btn-secondary m-1" to="/checkout">Proceed to checkout</NavLink>
                 </div>
 
                 : <h3>The cart is empty.</h3>

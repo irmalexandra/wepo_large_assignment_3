@@ -87,7 +87,7 @@ const addToCart = id => {
     toastr.options = {
         "closeButton": false,
         "debug": false,
-        "newestOnTop": false,
+        "newestOnTop": true,
         "progressBar": true,
         "positionClass": "toast-top-right",
         "preventDuplicates": true,

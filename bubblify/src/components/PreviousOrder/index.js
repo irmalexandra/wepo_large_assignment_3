@@ -22,9 +22,8 @@ class PreviousOrders extends React.Component {
                     <ProductList products={ this.state.products } />
                     </div> :
                     <div>
-                    <label>Telephone</label><br/>
-                        <input id="telephoneInput" type="text" placeholder="Enter Telephone number"/><br/>
-                        <button className="btn btn-secondary" onClick={() => this.changeTelephoneState()}>
+                        <input className="m-2" id="telephoneInput" type="text" placeholder="Enter Telephone number"/><br/>
+                        <button className="btn btn-secondary m-2" onClick={() => this.changeTelephoneState()}>
                             Get Orders
                     </button>
                     </div>
