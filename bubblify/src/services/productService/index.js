@@ -81,7 +81,27 @@ const addToCart = id => {
     }
     cart.push(id)
     localStorage.setItem("cart", JSON.stringify(cart))
-    toastr.info("Item added to cart")
+
+    toastr["success"]("<br /><br /><a href = \"/checkout\" class=\"btn clear btn-secondary\"}'>Proceed to checkout</a>", "Added to cart!")
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": 3000,
+        "extendedTimeOut": 0,
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "tapToDismiss": false
+    }
 }
 
 const addBundleToCart = async bundleId => {

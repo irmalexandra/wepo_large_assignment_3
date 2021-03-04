@@ -6,11 +6,10 @@ import Products from "./components/Products";
 import About from "./components/About"
 import Bundles from "./components/Bundles"
 import Cart from "./components/Cart"
-import DeliveryInfo from "./components/DeliveryInfo";
 import ProductDetailsWrapper from "./components/ProductDetailsWrapper/"
-import PickupInfo from "./components/PickupInfo";
-import OrderReview from "./components/OrderReview";
 import PreviousOrders from "./components/PreviousOrder";
+import CheckoutInfo from "./components/CheckoutInfo";
+import OrderReview from "./components/OrderReview";
 
 function App() {
   return (
