@@ -2,9 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types'
 import { addToCart } from "../../services/productService";
 
-class ProductDetails extends React.Component{
-    render() {
-        const {name, image, price, description, id} = this.props.product
+const ProductDetails = ({name, image, price, description, id}) =>{
         return (
             <div className="product-container">
                 <div className="image-container">
@@ -24,23 +22,18 @@ class ProductDetails extends React.Component{
                 </div>
             </div>
         );
-    }
 }
 
 ProductDetails.propTypes = {
-    // The title of the component
-    product: PropTypes.shape({
-        // The name of the product
-        name: PropTypes.string.isRequired,
-        // An image of the product
-        image: PropTypes.string.isRequired,
-        // The price of the product
-        price: PropTypes.number.isRequired,
-        // The description of the product
-        description: PropTypes.string,
-        // The unique id of the product
-        id: PropTypes.number.isRequired
-    }).isRequired
-
+    // The name of the product
+    name: PropTypes.string.isRequired,
+    // An image of the product
+    image: PropTypes.string.isRequired,
+    // The price of the product
+    price: PropTypes.number.isRequired,
+    // The description of the product
+    description: PropTypes.string,
+    // The unique id of the product
+    id: PropTypes.number.isRequired
 }
 export default ProductDetails;

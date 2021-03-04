@@ -1,23 +1,36 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {getBundles} from "../../services/productService"
 import BundlesList from "../BundlesList";
 
-class Bundles extends React.Component {
+const Bundles = () => {
+    const [bundles, setBundles] = useState([])
 
-    state = { bundles: [] };
+    useEffect(() => {
+        getBundles().then(b => setBundles(b));
+    }, [])
 
-    async componentDidMount(){
-        this.setState({
-            bundles: await getBundles()
-        })
-    };
-
-    render() {
-        return (<div>
-            <h1>Bundles</h1>
-            <BundlesList bundles={ this.state.bundles } />
-        </div>);
-    }
+    return (<div>
+        <h1>Bundles</h1>
+        <BundlesList bundles={bundles}/>
+    </div>);
 }
+
+// class Bundles extends React.Component {
+//
+//     state = { bundles: [] };
+//
+//     async componentDidMount(){
+//         this.setState({
+//             bundles: await getBundles()
+//         })
+//     };
+//
+//     render() {
+//         return (<div>
+//             <h1>Bundles</h1>
+//             <BundlesList bundles={ this.state.bundles } />
+//         </div>);
+//     }
+// }
 
 export default Bundles;

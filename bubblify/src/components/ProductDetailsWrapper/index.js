@@ -1,26 +1,38 @@
-import React from 'react';
-import { getProductById } from "../../services/productService"
+import React, {useEffect, useState} from 'react';
+import {getProductById} from "../../services/productService"
 import ProductDetails from "../ProductDetails";
+import {useParams} from "react-router";
 
-class ProductDetailsWrapper extends React.Component {
+const ProductDetailsWrapper = () => {
+    const [product, setProduct] = useState(
+        {
+            product: {
+                name: "",
+                image: "",
+                price: 0,
+                description: "",
+                id: 0
+            }
+        })
 
-    state = {
-        product: {}
-    };
+    const productId = useParams().productId
+
+    useEffect(() => {
+        getProductById(productId).then(r => setProduct(r));
+    }, [productId])
+
+    return (
+        <div>
+            {
+                product.name !== undefined ?
+                    <ProductDetails product={product.name} {...product}/>
+                    :
+                    <div/>
+            }
+        </div>
 
 
-    async componentDidMount() {
-
-        let product = await getProductById(this.props.match.params.productId);
-        if(product){
-            this.setState({product: product});
-        }
-    };
-    render() {
-        return (
-            <ProductDetails product={this.state.product}/>
-        );
-    }
+)
 }
 
 export default ProductDetailsWrapper

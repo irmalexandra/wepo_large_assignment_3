@@ -1,10 +1,14 @@
-import React from 'react'
-import {postOrder} from "../../services/productService"
-import ProductList from "../ProductList";
+import React, {useEffect, useState} from 'react'
+import {postOrder, getCartItems} from "../../services/productService"
+import {NavLink} from "react-router-dom";
 
 
-const OrderReview = ({cart, info}) => {
+const OrderReview = ({info}) => {
+    const [cart, setCart] = useState([])
 
+    useEffect(() => {
+        getCartItems().then(cart => setCart(cart))
+    },[])
 
     return (
         <div>
@@ -60,7 +64,7 @@ const OrderReview = ({cart, info}) => {
                 </tbody>
             </table>
             <div id="confirmBody">
-                <button className="btn btn-primary" onClick={() => postOrder({cart: cart, info: info})}>Confirm</button>
+                <NavLink to="/" className="btn btn-primary" onClick={() => postOrder({cart: cart, info: info})}>Confirm</NavLink>
 
             </div>
         </div>

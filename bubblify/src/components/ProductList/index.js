@@ -5,7 +5,7 @@ import {PropTypes} from "prop-types";
 const ProductList = ({products}) => (
         <div className="container-fluid padding">
             <div className="d-flex flex-row flex-wrap justify-content-center">
-                    {products.map(p => <Product key={p.name} {...p} />)}
+                {products.map(p => <Product key={p.name} {...p} />)}
             </div>
         </div>
 )

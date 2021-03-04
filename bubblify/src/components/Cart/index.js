@@ -33,7 +33,7 @@ class Cart extends React.Component {
             <h1>Cart</h1>
             <ProductList products={this.state.products}/>
 
-            {this.state.products.length > 1 ?
+            {this.state.products.length > 0 ?
                 <div>
                     <button type="submit" className="btn btn-outline-secondary"
                             onClick={() => this.clearButtonHandler()}
@@ -49,14 +49,9 @@ class Cart extends React.Component {
                     <label className="form-check-label">Pick up</label>
                     <br/>
                     {this.state.delivery === true ?
-                        <NavLink to={{
-                            pathname: "cart/delivery",
-                            cart: this.state.products}}
+                        <NavLink className="btn btn-secondary" to="cart/delivery"
                         >Proceed to checkout</NavLink> :
-                        <NavLink to={{
-                            pathname: "cart/pickup",
-                            cart: this.state.products
-                        }}>Proceed to
+                        <NavLink className="btn btn-secondary" to="cart/pickup">Proceed to
                             checkout</NavLink>}
                 </div>
 

@@ -1,25 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ProductList from "../ProductList";
 import {getProducts} from "../../services/productService"
 
-class Products extends React.Component {
-    state = {
-        products: [],
-    };
+const Products = () =>{
+    const [ products, setProducts] = useState([])
 
-    async componentDidMount() {
-        this.setState({
-            products: await getProducts()
-        })
-    }
+    useEffect(  () => {
+        getProducts().then(r => setProducts(r));
+        },[])
 
-    render() {
-        return (<div>
+    return (
+        <div>
             <h1>Products</h1>
-            <ProductList products={ this.state.products } />
-        </div>);
-    }
-}
+            <ProductList products={ products } />
+        </div>
+    )
 
+}
 
 export default Products;

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Redirect} from "react-router-dom";
 import OrderReview from "../OrderReview";
 
 
@@ -70,7 +69,7 @@ class DeliveryInfo extends React.Component {
 
             <div className="inputFormContainer">
                 {this.state.isValid ?
-                    <OrderReview cart={this.props.location.cart} info={this.state.fields}/> :
+                    <OrderReview info={this.state.fields}/> :
                     <div>
                         <h1>Delivery Info</h1>
                         <form onSubmit={(e) => this.validateForm(e)}>
@@ -110,7 +109,7 @@ class DeliveryInfo extends React.Component {
                                 <input type="text" ref={input => this.userForm.telephone = input}
                                        className="form-control"
                                        id="inputTelephone" name="telephone"
-                                       aria-describedby="telephoneHelp" placeholder="Enter email"
+                                       aria-describedby="telephoneHelp" placeholder="Enter telephone"
                                        onInput={e => this.onInput(e)}/>
                                 <small id="telephoneHelp" className="form-text text-muted mb-4">So we can call you for
                                     all your
