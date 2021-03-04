@@ -23,10 +23,6 @@ class Cart extends React.Component {
         this.setState({products: []});
     }
 
-    checkoutHandler = () => {
-        this.setState({delivery: document.getElementById("delivery").checked})
-    }
-
 
     render() {
         return (<div id="cartBody">
@@ -40,19 +36,7 @@ class Cart extends React.Component {
                     >Clear cart
                     </button>
                     <br/>
-                    <input type="radio" className="form-check-input" name="delivery-method" id="delivery"
-                           defaultChecked={true} onChange={() => this.checkoutHandler()}/>
-                    <label className="form-check-label">Delivery</label>
-                    <br/>
-                    <input type="radio" className="form-check-input" name="delivery-method" id="pick-up"
-                           onChange={() => this.checkoutHandler()}/>
-                    <label className="form-check-label">Pick up</label>
-                    <br/>
-                    {this.state.delivery === true ?
-                        <NavLink className="btn btn-secondary" to="cart/delivery"
-                        >Proceed to checkout</NavLink> :
-                        <NavLink className="btn btn-secondary" to="cart/pickup">Proceed to
-                            checkout</NavLink>}
+                    <NavLink className="btn btn-secondary" to="/checkout">Proceed to checkout</NavLink> :
                 </div>
 
                 : <h3>The cart is empty.</h3>

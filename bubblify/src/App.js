@@ -22,9 +22,8 @@ function App() {
                 <Route exact path="/about" component={ About } />
                 <Route exact path="/cart" component={ Cart } />
                 <Route exact path ="/bubbles/:productId" component={ProductDetailsWrapper}/>
-                <Route exact path="/cart/pickup" component={ PickupInfo } />
-                <Route exact path="/cart/delivery" component={ DeliveryInfo } />
-                <Route exact path="/cart/review" component={ OrderReview } />
+                <Route exact path="/checkout" component={ CheckoutInfo } />
+                <Route exact path="/checkout/review" component={ OrderReview } />
                 <Route exact path="/previousorder" component={ PreviousOrders } />
 
             </Switch>
